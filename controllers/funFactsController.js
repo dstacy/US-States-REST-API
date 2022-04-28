@@ -2,10 +2,10 @@ const States = require('../model/States');
 
 const getRandomFact = async (req, res) => {
     const result = await States.findOne({stateCode: res.state.code}, 'funfacts').exec();
-    const factArray = result.funfacts;
-    if(!factArray) {
+    if(!result) {
         return res.status(404).json({ "message": `No Fun Facts found for ${res.state.state}` });
     }
+    const factArray = result.funfacts;
     const funfact = factArray[Math.floor(Math.random()*factArray.length)]
     res.json({funfact});
 }
