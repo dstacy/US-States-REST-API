@@ -22,7 +22,8 @@ const getNickname = (req,res) => {
 // number doesn't contain commas
 const getPopulation = (req,res) => {
     const state = res.state.state;
-    const population = res.state.population;
+    let population = res.state.population;
+    population = population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     res.json({ state, population });
 }
 
