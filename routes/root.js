@@ -3,8 +3,6 @@ const router = express.Router();
 const path = require('path');
 
 router.get('^/$|/index(.html)?', (req, res) => {
-    // either of the following two lines passes file 
-    // res.sendFile('./views/index.html', {root: __dirname });
     res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
 });
 
