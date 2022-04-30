@@ -11,7 +11,7 @@ const getAllStates = async (req,res) => {
             const funfacts = stateExists.funfacts;
             merged.push({...state, funfacts});
         }else {
-            merged.push({state});
+            merged.push(state);
         }
     });
 
