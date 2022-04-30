@@ -25,7 +25,7 @@ const getState = async (req, res) => {
         const funfacts = mongoState.funfacts;
         res.json({...state, funfacts });
     }else {
-        res.json({state});
+        res.json(state);
     }
 };
 
