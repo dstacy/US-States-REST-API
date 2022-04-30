@@ -8,6 +8,7 @@ const verifyState = (req, res, next) => {
         if (!state) {
             return res.status(404).json({ "message": `Invalid state abbreviation parameter` });
         }
+        
         res.state = state;
         next();
 }

@@ -28,7 +28,7 @@ const createNewFact = async (req, res) => {
 }
 
 module.exports = {
-    // getFacts,
+    //getAllFacts,
     getRandomFact,
     createNewFact
 }

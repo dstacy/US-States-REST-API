@@ -1,10 +1,32 @@
-const getAllStates = (req,res) => {
-    res.json(res.states);
+const States = require('../model/States');
+
+const getAllStates = async (req,res) => {
+    // const statesList = res.states.map(state => state.code);
+    const states = res.states;
+    const mongoStates = await States.find({}).exec();
+    let merged = [];
+    states.forEach(state => {
+        stateExists = mongoStates.find(st => st.stateCode === state.code);
+        if(stateExists) {
+            const funfacts = stateExists.funfacts;
+            merged.push({...state, funfacts});
+        }else {
+            merged.push({state});
+        }
+    });
+
+    res.json(merged);
 }
 
-const getState = (req, res) => {
+const getState = async (req, res) => {
     const state = res.state;
-    res.json({state});
+    const mongoState = await States.findOne({'stateCode' : state.code}).exec();
+    if(mongoState) {
+        const funfacts = mongoState.funfacts;
+        res.json({...state, funfacts });
+    }else {
+        res.json({state});
+    }
 };
 
 const getCapital = (req,res) => {
