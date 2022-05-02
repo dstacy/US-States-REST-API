@@ -11,12 +11,12 @@ const getRandomFact = async (req, res) => {
 }
 
 const createNewFact = async (req, res) => {
-    if (!req?.body?.stateCode || !req?.body?.funfacts) {
-        return res.status(400).json({ 'message': 'State code and funfact required' });
+    if (!req?.body?.stateCode /*|| !req?.body?.funfacts)*/) {
+        return res.status(400).json({ 'message': 'State funfacts value required' });
     }
 
     try {
-        const result = await States.create({
+        const result = await States.insertMany({
             stateCode: req.body.stateCode,
             funfacts: req.body.funfacts
         });
