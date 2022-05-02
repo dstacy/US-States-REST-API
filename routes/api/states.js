@@ -7,7 +7,8 @@ const verifyContig = require('../../middleware/verifyContig');
 const funFactsController = require('../../controllers/funFactsController');
 
 router.route('/')
-    .get(verifyContig, statesController.getAllStates);
+    .get(verifyContig, statesController.getAllStates)
+    .post(funFactsController.createNewFact);
 
 router.route('/:code')
     .get(verifyState, statesController.getState)
