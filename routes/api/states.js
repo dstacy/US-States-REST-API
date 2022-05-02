@@ -8,13 +8,13 @@ const funFactsController = require('../../controllers/funFactsController');
 
 router.route('/')
     .get(verifyContig, statesController.getAllStates)
-    .post(funFactsController.createNewFact);
 
 router.route('/:code')
     .get(verifyState, statesController.getState)
 
 router.route('/:code/funfact')
-    .get(verifyState, funFactsController.getRandomFact);
+    .get(verifyState, funFactsController.getRandomFact)
+    .post(verifyState, funFactsController.createNewFact);
 
 router.route('/:code/capital')
     .get(verifyState, statesController.getCapital);
