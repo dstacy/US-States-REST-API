@@ -19,8 +19,9 @@ const createNewFact = async (req, res) => {
         try {
                 const result = await States.findOneAndUpdate(
                     {stateCode: res.state.code},
-                    {$push: { funfacts: req.body.funfacts }},
-                    {upsert: true}
+                    {$push: { funfacts: req.body.funfacts }},  
+                    {upsert: true,
+                    new: true}
                 );
         
             res.status(201).json(result);
