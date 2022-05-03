@@ -14,7 +14,8 @@ router.route('/:code')
 
 router.route('/:code/funfact')
     .get(verifyState, funFactsController.getRandomFact)
-    .post(verifyState, funFactsController.createNewFact);
+    .post(verifyState, funFactsController.createNewFact)
+    .patch(verifyState, funFactsController.updateFunFact);
 
 router.route('/:code/capital')
     .get(verifyState, statesController.getCapital);
