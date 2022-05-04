@@ -15,18 +15,19 @@ router.route('/:code')
 router.route('/:code/funfact')
     .get(verifyState, funFactsController.getRandomFact)
     .post(verifyState, funFactsController.createNewFact)
-    .patch(verifyState, funFactsController.updateFunFact);
+    .patch(verifyState, funFactsController.updateFunFact)
+    .delete(verifyState, funFactsController.deleteFunFact)
 
 router.route('/:code/capital')
-    .get(verifyState, statesController.getCapital);
+    .get(verifyState, statesController.getCapital)
 
 router.route('/:code/nickname')
-    .get(verifyState, statesController.getNickname);
+    .get(verifyState, statesController.getNickname)
 
 router.route('/:code/population')
-    .get(verifyState, statesController.getPopulation);
+    .get(verifyState, statesController.getPopulation)
 
 router.route('/:code/admission')
-    .get(verifyState, statesController.getAdmission);
+    .get(verifyState, statesController.getAdmission)
 
 module.exports = router;
