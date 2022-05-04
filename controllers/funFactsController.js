@@ -31,11 +31,14 @@ const createNewFact = async (req, res) => {
 }
 
 const updateFunFact = async (req, res) => {
+    if(!req?.body?.index) {
+        return res.status(400).json({ 'message': 'State fun fact index value required' });
+    }
+
     if (!req?.body?.funfacts) {
         return res.status(400).json({ 'message': 'State fun fact value required' });
-    }else if(!req?.body?.index) {
-        return res.status(400).json({ 'message': 'State fun fact index value required' });
-    }else {
+    }
+    
 
         try {
             const index = req.body.index - 1;  
@@ -50,7 +53,19 @@ const updateFunFact = async (req, res) => {
                     {$set: { [`funfacts.${index}`]: req.body.funfacts.toString()}},  
                     {new: true}
                 );
-        
+            
+        /*
+            const getMongo = await States.find({stateCode: res.state.code}, `funfacts.${index}`).exec();
+                if(getMongo === null) {
+                    return res.status(404).json({ "message": `No Fun Fact found at index ${index} for ${res.state.state}` });
+                }
+                
+            const result = await States.updateOne(
+                {stateCode: res.state.code},
+                {$set: { [`funfacts.${index}`]: req.body.funfacts.toString()}},  
+                {new: true}
+            );
+            */
             if(result === null) {
                 return res.status(404).json({ "message": `No Fun Fact found at index ${index} for ${res.state.state}` });
             }else {
@@ -59,8 +74,11 @@ const updateFunFact = async (req, res) => {
         } catch (err) {
             console.error(err);
         }
-    }
+    
 }
+
+
+
 
 module.exports = {
     getRandomFact,
