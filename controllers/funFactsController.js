@@ -35,7 +35,7 @@ const updateFunFact = async (req, res) => {
         return res.status(400).json({ 'message': 'State fun fact index value required' });
     }
 
-    if (!req?.body?.funfacts) {
+    if (!req?.body?.funfact) {
         return res.status(400).json({ 'message': 'State fun fact value required' });
     }
     
@@ -51,7 +51,7 @@ const updateFunFact = async (req, res) => {
             const result = await States.findOneAndUpdate(
                     {stateCode: res.state.code,
                     [`funfacts.${index}`]: {$exists: true}},
-                    {$set: { [`funfacts.${index}`]: req.body.funfacts.toString()}},  
+                    {$set: { [`funfacts.${index}`]: req.body.funfact.toString()}},  
                     {new: true}
                 );
             
