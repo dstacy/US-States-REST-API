@@ -5,7 +5,7 @@ const stateSchema = new Schema({
     stateCode: {
         type: String,
         required: true,
-        Unique: true
+        unique: true
     },
     funfacts: [String] 
 });
